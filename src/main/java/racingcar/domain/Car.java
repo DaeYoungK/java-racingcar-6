@@ -22,6 +22,10 @@ public class Car {
         return carName;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
     public void move(int number) {
         if (isMove(number)) {
             level++;
