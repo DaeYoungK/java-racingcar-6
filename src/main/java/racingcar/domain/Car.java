@@ -15,7 +15,12 @@ public class Car {
         this.log = log;
     }
 
+
     public static Car create(String carName) {
         return new Car(carName, INIT_CAR_LEVEL, INIT_CAR_LOG);
+    }
+
+    public String getCarName() {
+        return carName;
     }
 }
