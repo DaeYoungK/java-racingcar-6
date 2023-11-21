@@ -19,7 +19,9 @@
    3. CalculateManager
    - [ ] 단일 우승자를 구하는 기능 구현
    - [ ] 공동 우승자를 구하는 기능 구현
-   4. ErrorMessage
+   4. MakeResult
+   - [ ] 결과 출력용 메시지를 생성하는 기능 구현
+   5. ErrorMessage
    - [ ] 예외 사항 발생 시 출력할 메시지 구현
 
 4. validation
