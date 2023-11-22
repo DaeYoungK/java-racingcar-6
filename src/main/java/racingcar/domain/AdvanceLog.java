@@ -1,10 +1,14 @@
 package racingcar.domain;
 
+import java.util.List;
+
 public class AdvanceLog {
 
     private static final String ADVANCE_CHECK = "-";
     private static final String INIT_LOG = "";
     private static final String LINE = " : ";
+    private static final String SEPARATOR = ", ";
+    private static final int ONLY_ONE_WINNER = 1;
 
     public String make(String carName, int level) {
         String log = INIT_LOG;
@@ -12,5 +16,13 @@ public class AdvanceLog {
             log += ADVANCE_CHECK;
         }
         return carName + LINE + log;
+    }
+
+    public String winners(List<String> winners) {
+        if (winners.size() == ONLY_ONE_WINNER) {
+            return winners.get(ONLY_ONE_WINNER);
+        }
+
+        return String.join(SEPARATOR, winners);
     }
 }
