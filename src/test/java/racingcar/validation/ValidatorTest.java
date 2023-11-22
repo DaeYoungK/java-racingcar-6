@@ -20,4 +20,13 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력한 데이터가 숫자인지 검증")
+    @ValueSource(strings = {"0", "00", "000"})
+    @ParameterizedTest
+    void validSizeTest(String value) {
+        assertThatThrownBy(() -> validator.validCount(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }
