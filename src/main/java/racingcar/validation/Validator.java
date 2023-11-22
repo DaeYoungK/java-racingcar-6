@@ -6,9 +6,18 @@ import static racingcar.domain.ErrorMessage.*;
 
 public class Validator {
 
-    public void validCount(String count) {
-        checkType(count);
+    private static final int ZERO = 0;
 
+    public void validCount(String count) {
+        int resultCount = checkType(count);
+        checkZero(resultCount);
+    }
+
+    private void checkZero(int count) {
+        if (count == ZERO) {
+            message(SIZE_ERROR);
+            throw new IllegalArgumentException();
+        }
     }
 
     private int checkType(String count) {
