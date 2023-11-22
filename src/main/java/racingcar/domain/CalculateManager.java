@@ -10,6 +10,9 @@ public class CalculateManager {
     private static final String SEPARATOR = ",";
 
     public List<String> makeList(String names) {
+        if (!names.contains(SEPARATOR)) {
+            return Arrays.asList(names);
+        }
         return Arrays.stream(names.split(SEPARATOR)).toList();
     }
 
