@@ -22,7 +22,7 @@ class AdvanceLogTest {
 
         String log = advanceLog.make(carName, level);
 
-        Assertions.assertThat(log).isEqualTo("bong : ---");
+        Assertions.assertThat(log).isEqualTo("bong : ---\n");
     }
 
     @DisplayName("우승자 목록을 받아 우승자를 출력한다.")
