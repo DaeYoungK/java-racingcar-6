@@ -5,10 +5,15 @@ import racingcar.domain.CalculateManager;
 import racingcar.domain.Car;
 import racingcar.domain.CarStore;
 import racingcar.utility.RandomNumber;
+import racingcar.validation.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static racingcar.utility.RetryLogic.*;
 
 public class GameController {
 
@@ -17,6 +22,7 @@ public class GameController {
     private final OutputView outputView;
     private final CalculateManager calculateManager;
     private final AdvanceLog advanceLog;
+    private final Validator validator;
 
     public GameController() {
         carStore = new CarStore();
@@ -24,6 +30,7 @@ public class GameController {
         outputView = new OutputView();
         calculateManager = new CalculateManager();
         advanceLog = new AdvanceLog();
+        validator = new Validator();
     }
 
     public void proceed() {
@@ -40,10 +47,11 @@ public class GameController {
     }
 
     private void start() {
-        int racingCount = Integer.parseInt(inputView.readCount());
+        AtomicInteger racingCount = new AtomicInteger();
+        retry(() -> racingCount.set(validator.validCount(inputView.readCount())));
 
         outputView.printStartMessage();
-        for (int i = 0; i < racingCount; i++) {
+        for (int i = 0; i < racingCount.get(); i++) {
             outputView.printResultMessage(makeLog());
         }
     }
@@ -66,8 +74,9 @@ public class GameController {
     }
 
     private void setCars() {
-        List<String> carNames = calculateManager.makeList(inputView.readCarName());
-        addCars(carNames);
+        AtomicReference<List<String>> carNames = new AtomicReference<>();
+        retry(() -> carNames.set(validator.validName(calculateManager.makeList(inputView.readCarName()))));
+        addCars(carNames.get());
     }
 
     private void addCars(List<String> carNames) {
