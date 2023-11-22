@@ -7,9 +7,10 @@ import java.util.List;
 public class CalculateManager {
 
     private static final int OR_ELSE_NUMBER = 0;
+    private static final String SEPARATOR = ",";
 
     public List<String> makeList(String names) {
-        return Arrays.stream(names.split(",")).toList();
+        return Arrays.stream(names.split(SEPARATOR)).toList();
     }
 
     public List<String> getWinners(List<Car> cars) {
