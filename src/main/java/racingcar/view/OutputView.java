@@ -7,9 +7,14 @@ public class OutputView {
 
     public void printResultMessage(String gameResult) {
         System.out.println(gameResult);
+        System.out.println();
     }
 
     public void printFinalWinner(String winners) {
         System.out.println(FINAL_WINNER + winners);
+    }
+
+    public void printStartMessage() {
+        System.out.println(OUTPUT_RESULT_MESSAGE);
     }
 }
