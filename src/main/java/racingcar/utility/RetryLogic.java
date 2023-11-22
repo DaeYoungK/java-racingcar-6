@@ -32,7 +32,6 @@ public class RetryLogic {
     private static void checkEx(Exception e) {
         if (!(e.getClass().isAssignableFrom(IllegalArgumentException.class))) {
             message(COMMON_ERROR);
-            throw new IllegalArgumentException();
         }
     }
 }
