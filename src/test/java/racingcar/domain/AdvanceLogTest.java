@@ -4,6 +4,10 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AdvanceLogTest {
@@ -19,6 +23,16 @@ class AdvanceLogTest {
         String log = advanceLog.make(carName, level);
 
         Assertions.assertThat(log).isEqualTo("bong : ---");
+    }
+
+    @DisplayName("우승자 목록을 받아 우승자를 출력한다.")
+    @Test
+    void winnerLogTest() {
+        List<String> winners = Arrays.asList("bong", "bong2");
+
+        String winnersForPrint = advanceLog.winners(winners);
+
+        Assertions.assertThat(winnersForPrint).isEqualTo("bong, bong2");
     }
 
 }
